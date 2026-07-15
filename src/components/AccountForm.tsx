@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CupertinoListGroup, CupertinoButton } from './cupertino'
-import { CupertinoInput, CupertinoSelect } from './cupertino/CupertinoInput'
+import { CupertinoInput } from './cupertino/CupertinoInput'
+import { CupertinoPicker } from './cupertino/CupertinoPicker'
 import { useAccountStore } from '../stores/useAccountStore'
 import { CURRENCIES, type Account, type AccountType, type PrepaidType, type Frequency } from '../models/types'
 
@@ -39,19 +40,16 @@ export function AccountForm({ account, onDone }: Props) {
   const [balance, setBalance] = useState(account?.balance?.toString() ?? '0')
   const [institution, setInstitution] = useState(account?.institution ?? '')
 
-  // Credit
   const [billingDay, setBillingDay] = useState(account?.billingDay?.toString() ?? '')
   const [dueDay, setDueDay] = useState(account?.dueDay?.toString() ?? '')
   const [creditLimit, setCreditLimit] = useState(account?.creditLimit?.toString() ?? '')
 
-  // Insurance
   const [premium, setPremium] = useState(account?.premium?.toString() ?? '')
   const [premiumFrequency, setPremiumFrequency] = useState<Frequency>(account?.premiumFrequency ?? 'monthly')
   const [maturityDate, setMaturityDate] = useState(account?.maturityDate ?? '')
   const [totalPeriods, setTotalPeriods] = useState(account?.totalPeriods?.toString() ?? '')
   const [paidPeriods, setPaidPeriods] = useState(account?.paidPeriods?.toString() ?? '')
 
-  // Prepaid
   const [prepaidType, setPrepaidType] = useState<PrepaidType>(account?.prepaidType ?? 'easycard')
   const [autoTopUpThreshold, setAutoTopUpThreshold] = useState(account?.autoTopUpThreshold?.toString() ?? '')
   const [autoTopUpAmount, setAutoTopUpAmount] = useState(account?.autoTopUpAmount?.toString() ?? '')
@@ -106,8 +104,8 @@ export function AccountForm({ account, onDone }: Props) {
     <div className="space-y-4">
       <CupertinoListGroup inset={false}>
         <CupertinoInput label="Name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Account name" />
-        <CupertinoSelect label="Type" value={type} onChange={(v) => setType(v as AccountType)} options={ACCOUNT_TYPES} />
-        <CupertinoSelect label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: `${c.code} (${c.symbol})` }))} />
+        <CupertinoPicker label="Type" value={type} onChange={(v) => setType(v as AccountType)} options={ACCOUNT_TYPES} />
+        <CupertinoPicker label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: `${c.code} (${c.symbol})` }))} />
         <CupertinoInput label="Balance" type="number" value={balance} onChange={(e) => setBalance(e.target.value)} placeholder="0" />
         <CupertinoInput label="Institution" value={institution} onChange={(e) => setInstitution(e.target.value)} placeholder="Optional" />
       </CupertinoListGroup>
@@ -123,7 +121,7 @@ export function AccountForm({ account, onDone }: Props) {
       {type === 'insurance' && (
         <CupertinoListGroup header="Insurance Details" inset={false}>
           <CupertinoInput label="Premium" type="number" value={premium} onChange={(e) => setPremium(e.target.value)} placeholder="Premium amount" />
-          <CupertinoSelect label="Frequency" value={premiumFrequency} onChange={(v) => setPremiumFrequency(v as Frequency)} options={FREQUENCY_OPTIONS} />
+          <CupertinoPicker label="Frequency" value={premiumFrequency} onChange={(v) => setPremiumFrequency(v as Frequency)} options={FREQUENCY_OPTIONS} />
           <CupertinoInput label="Maturity" type="date" value={maturityDate} onChange={(e) => setMaturityDate(e.target.value)} />
           <CupertinoInput label="Total Periods" type="number" value={totalPeriods} onChange={(e) => setTotalPeriods(e.target.value)} placeholder="Total periods" />
           <CupertinoInput label="Paid" type="number" value={paidPeriods} onChange={(e) => setPaidPeriods(e.target.value)} placeholder="Paid periods" />
@@ -132,7 +130,7 @@ export function AccountForm({ account, onDone }: Props) {
 
       {type === 'prepaid' && (
         <CupertinoListGroup header="Prepaid Details" inset={false}>
-          <CupertinoSelect label="Type" value={prepaidType} onChange={(v) => setPrepaidType(v as PrepaidType)} options={PREPAID_TYPES} />
+          <CupertinoPicker label="Type" value={prepaidType} onChange={(v) => setPrepaidType(v as PrepaidType)} options={PREPAID_TYPES} />
           <CupertinoInput label="Top-up At" type="number" value={autoTopUpThreshold} onChange={(e) => setAutoTopUpThreshold(e.target.value)} placeholder="Auto top-up threshold" />
           <CupertinoInput label="Top-up Amt" type="number" value={autoTopUpAmount} onChange={(e) => setAutoTopUpAmount(e.target.value)} placeholder="Auto top-up amount" />
           <div className="flex items-center min-h-[44px] px-4">

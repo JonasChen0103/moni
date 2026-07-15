@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CupertinoListGroup, CupertinoButton } from './cupertino'
-import { CupertinoInput, CupertinoSelect } from './cupertino/CupertinoInput'
+import { CupertinoInput } from './cupertino/CupertinoInput'
+import { CupertinoPicker } from './cupertino/CupertinoPicker'
 import { useTransactionStore } from '../stores/useTransactionStore'
 import { useAccountStore } from '../stores/useAccountStore'
 import { CATEGORIES, CURRENCIES, type Transaction, type TransactionType } from '../models/types'
@@ -78,13 +79,13 @@ export function TransactionForm({ transaction, onDone }: Props) {
 
       <CupertinoListGroup inset={false}>
         <CupertinoInput label="Amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" />
-        <CupertinoSelect label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: c.code }))} />
+        <CupertinoPicker label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: `${c.code} (${c.symbol})` }))} />
         <CupertinoInput label="Date" type="date" value={date} onChange={(e) => setDate(e.target.value)} />
       </CupertinoListGroup>
 
       <CupertinoListGroup inset={false}>
         {accountOptions.length > 0 && (
-          <CupertinoSelect
+          <CupertinoPicker
             label={type === 'transfer' ? 'From' : 'Account'}
             value={accountId}
             onChange={setAccountId}
@@ -92,9 +93,9 @@ export function TransactionForm({ transaction, onDone }: Props) {
           />
         )}
         {type === 'transfer' && accountOptions.length > 0 && (
-          <CupertinoSelect label="To" value={toAccountId} onChange={setToAccountId} options={accountOptions} />
+          <CupertinoPicker label="To" value={toAccountId} onChange={setToAccountId} options={accountOptions} />
         )}
-        <CupertinoSelect
+        <CupertinoPicker
           label="Category"
           value={category}
           onChange={setCategory}

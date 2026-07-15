@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { AreaChart, Area, ResponsiveContainer } from 'recharts'
 import { CupertinoNavBar, CupertinoCard } from '../components/cupertino'
 import { AccountTypeIcon } from '../components/icons/AccountTypeIcon'
+import { CategoryPieChart } from '../components/charts/CategoryPieChart'
+import { TransactionHeatmap } from '../components/charts/TransactionHeatmap'
 import { useAccountStore } from '../stores/useAccountStore'
 import { useTransactionStore } from '../stores/useTransactionStore'
 import { useInstallmentStore } from '../stores/useInstallmentStore'
@@ -74,11 +76,11 @@ export default function Dashboard() {
               <AreaChart data={forecast} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="miniGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#007AFF" stopOpacity={0.25} />
-                    <stop offset="100%" stopColor="#007AFF" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#024059" stopOpacity={0.3} />
+                    <stop offset="100%" stopColor="#024059" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <Area type="monotone" dataKey="projectedNetWorth" stroke="#007AFF" fill="url(#miniGrad)" strokeWidth={2} dot={false} />
+                <Area type="monotone" dataKey="projectedNetWorth" stroke="#024059" fill="url(#miniGrad)" strokeWidth={2} dot={false} />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -88,6 +90,18 @@ export default function Dashboard() {
               {format(forecast[forecast.length - 1].projectedNetWorth, 'TWD')}
             </span>
           </div>
+        </CupertinoCard>
+      )}
+
+      {transactions.length > 0 && (
+        <CupertinoCard>
+          <CategoryPieChart transactions={transactions} format={format} />
+        </CupertinoCard>
+      )}
+
+      {transactions.length > 0 && (
+        <CupertinoCard>
+          <TransactionHeatmap transactions={transactions} />
         </CupertinoCard>
       )}
 
@@ -154,7 +168,7 @@ export default function Dashboard() {
         <CupertinoCard onClick={() => navigate('/accounts')}>
           <div className="text-center py-6">
             <div className="w-14 h-14 rounded-2xl bg-ios-blue/10 flex items-center justify-center mx-auto mb-3">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#007AFF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#024059" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="5" width="20" height="14" rx="2" />
                 <path d="M12 9v6M9 12h6" />
               </svg>

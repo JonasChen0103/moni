@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CupertinoListGroup, CupertinoButton } from './cupertino'
-import { CupertinoInput, CupertinoSelect } from './cupertino/CupertinoInput'
+import { CupertinoInput } from './cupertino/CupertinoInput'
+import { CupertinoPicker } from './cupertino/CupertinoPicker'
 import { useRecurringStore } from '../stores/useRecurringStore'
 import { useAccountStore } from '../stores/useAccountStore'
 import { CATEGORIES, CURRENCIES, type Frequency, type TransactionType } from '../models/types'
@@ -72,15 +73,15 @@ export function RecurringForm({ onDone }: Props) {
 
       <CupertinoListGroup inset={false}>
         <CupertinoInput label="Amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0.00" />
-        <CupertinoSelect label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: c.code }))} />
-        <CupertinoSelect label="Frequency" value={frequency} onChange={(v) => setFrequency(v as Frequency)} options={FREQUENCIES} />
+        <CupertinoPicker label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: `${c.code} (${c.symbol})` }))} />
+        <CupertinoPicker label="Frequency" value={frequency} onChange={(v) => setFrequency(v as Frequency)} options={FREQUENCIES} />
       </CupertinoListGroup>
 
       <CupertinoListGroup inset={false}>
         {accountOptions.length > 0 && (
-          <CupertinoSelect label="Account" value={accountId} onChange={setAccountId} options={accountOptions} />
+          <CupertinoPicker label="Account" value={accountId} onChange={setAccountId} options={accountOptions} />
         )}
-        <CupertinoSelect label="Category" value={category} onChange={setCategory} options={CATEGORIES.map((c) => ({ value: c, label: c }))} />
+        <CupertinoPicker label="Category" value={category} onChange={setCategory} options={CATEGORIES.map((c) => ({ value: c, label: c }))} />
         <CupertinoInput label="Note" value={note} onChange={(e) => setNote(e.target.value)} placeholder="Optional" />
       </CupertinoListGroup>
 

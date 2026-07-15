@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CupertinoListGroup, CupertinoButton } from './cupertino'
-import { CupertinoInput, CupertinoSelect } from './cupertino/CupertinoInput'
+import { CupertinoInput } from './cupertino/CupertinoInput'
+import { CupertinoPicker } from './cupertino/CupertinoPicker'
 import { useInstallmentStore } from '../stores/useInstallmentStore'
 import { useAccountStore } from '../stores/useAccountStore'
 import { computeAPR } from '../services/irr'
@@ -48,9 +49,9 @@ export function InstallmentForm({ onDone }: Props) {
       <CupertinoListGroup inset={false}>
         <CupertinoInput label="Description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="e.g. iPhone 16" />
         {creditAccounts.length > 0 && (
-          <CupertinoSelect label="Card" value={accountId} onChange={setAccountId} options={creditAccounts.map((a) => ({ value: a.id, label: a.name }))} />
+          <CupertinoPicker label="Card" value={accountId} onChange={setAccountId} options={creditAccounts.map((a) => ({ value: a.id, label: a.name }))} />
         )}
-        <CupertinoSelect label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: c.code }))} />
+        <CupertinoPicker label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: `${c.code} (${c.symbol})` }))} />
       </CupertinoListGroup>
 
       <CupertinoListGroup header="Installment Terms" inset={false}>

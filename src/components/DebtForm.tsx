@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { CupertinoListGroup, CupertinoButton } from './cupertino'
-import { CupertinoInput, CupertinoSelect } from './cupertino/CupertinoInput'
+import { CupertinoInput } from './cupertino/CupertinoInput'
+import { CupertinoPicker } from './cupertino/CupertinoPicker'
 import { useDebtStore } from '../stores/useDebtStore'
 import { CURRENCIES } from '../models/types'
 
@@ -57,7 +58,7 @@ export function DebtForm({ onDone }: Props) {
       <CupertinoListGroup inset={false}>
         <CupertinoInput label="Who" value={person} onChange={(e) => setPerson(e.target.value)} placeholder="Friend's name" list="known-people" />
         <CupertinoInput label="Amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0" />
-        <CupertinoSelect label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: c.code }))} />
+        <CupertinoPicker label="Currency" value={currency} onChange={setCurrency} options={CURRENCIES.map((c) => ({ value: c.code, label: `${c.code} (${c.symbol})` }))} />
       </CupertinoListGroup>
 
       <CupertinoListGroup inset={false}>
