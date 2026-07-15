@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: -apple-system, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+
+  --color-ios-blue: #007AFF;
+  --color-ios-green: #34C759;
+  --color-ios-red: #FF3B30;
+  --color-ios-orange: #FF9500;
+  --color-ios-yellow: #FFCC00;
+  --color-ios-purple: #AF52DE;
+  --color-ios-teal: #5AC8FA;
+
+  --color-ios-bg: #F2F2F7;
+  --color-ios-card: #FFFFFF;
+  --color-ios-label: #000000;
+  --color-ios-secondary: rgba(60, 60, 67, 0.6);
+  --color-ios-tertiary: rgba(60, 60, 67, 0.3);
+  --color-ios-separator: rgba(60, 60, 67, 0.12);
+  --color-ios-fill: rgba(120, 120, 128, 0.12);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-ios-bg);
+  color: var(--color-ios-label);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  max-width: 520px;
+  margin-inline: auto;
+  min-height: 100dvh;
+}
+
+@media (min-width: 768px) {
+  body {
+    max-width: 480px;
+    border-inline: 1px solid var(--color-ios-separator);
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.06);
+  }
+}
+
+.dark body {
+  background-color: #000000;
+  color: #FFFFFF;
+}
+
+@media (min-width: 768px) {
+  .dark body {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.dark {
+  --color-ios-bg: #000000;
+  --color-ios-card: #1C1C1E;
+  --color-ios-label: #FFFFFF;
+  --color-ios-secondary: rgba(235, 235, 245, 0.6);
+  --color-ios-tertiary: rgba(235, 235, 245, 0.3);
+  --color-ios-separator: rgba(84, 84, 88, 0.65);
+  --color-ios-fill: rgba(120, 120, 128, 0.24);
+  --color-ios-blue: #0A84FF;
+  --color-ios-green: #30D158;
+  --color-ios-red: #FF453A;
+  --color-ios-orange: #FF9F0A;
+  --color-ios-purple: #BF5AF2;
+  --color-ios-teal: #64D2FF;
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 17px;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-slide-up {
+    animation: none;
+  }
+}

@@ -1,0 +1,84 @@
+[
+  {
+    "name": "accounts",
+    "type": "base",
+    "schema": [
+      { "name": "name", "type": "text", "required": true },
+      { "name": "type", "type": "select", "options": { "values": ["credit","checking","savings","debit","insurance","investment","cash","prepaid"] }, "required": true },
+      { "name": "currency", "type": "text", "required": true },
+      { "name": "balance", "type": "number" },
+      { "name": "icon", "type": "text" },
+      { "name": "institution", "type": "text" },
+      { "name": "billingDay", "type": "number" },
+      { "name": "dueDay", "type": "number" },
+      { "name": "creditLimit", "type": "number" },
+      { "name": "premium", "type": "number" },
+      { "name": "premiumFrequency", "type": "select", "options": { "values": ["daily","weekly","monthly","yearly"] } },
+      { "name": "maturityDate", "type": "text" },
+      { "name": "totalPeriods", "type": "number" },
+      { "name": "paidPeriods", "type": "number" },
+      { "name": "holdings", "type": "json" },
+      { "name": "prepaidType", "type": "select", "options": { "values": ["easycard","pxpay"] } },
+      { "name": "autoTopUpThreshold", "type": "number" },
+      { "name": "autoTopUpAmount", "type": "number" },
+      { "name": "quickDeduct", "type": "bool" }
+    ]
+  },
+  {
+    "name": "transactions",
+    "type": "base",
+    "schema": [
+      { "name": "date", "type": "text", "required": true },
+      { "name": "type", "type": "select", "options": { "values": ["income","expense","transfer"] }, "required": true },
+      { "name": "amount", "type": "number", "required": true },
+      { "name": "currency", "type": "text", "required": true },
+      { "name": "accountId", "type": "text", "required": true },
+      { "name": "toAccountId", "type": "text" },
+      { "name": "category", "type": "text" },
+      { "name": "note", "type": "text" },
+      { "name": "installmentId", "type": "text" }
+    ]
+  },
+  {
+    "name": "installments",
+    "type": "base",
+    "schema": [
+      { "name": "accountId", "type": "text", "required": true },
+      { "name": "description", "type": "text", "required": true },
+      { "name": "principal", "type": "number", "required": true },
+      { "name": "currency", "type": "text", "required": true },
+      { "name": "totalPeriods", "type": "number", "required": true },
+      { "name": "monthlyPayment", "type": "number", "required": true },
+      { "name": "startDate", "type": "text" },
+      { "name": "apr", "type": "number" }
+    ]
+  },
+  {
+    "name": "recurring",
+    "type": "base",
+    "schema": [
+      { "name": "type", "type": "select", "options": { "values": ["income","expense","transfer"] }, "required": true },
+      { "name": "amount", "type": "number", "required": true },
+      { "name": "currency", "type": "text", "required": true },
+      { "name": "accountId", "type": "text", "required": true },
+      { "name": "category", "type": "text" },
+      { "name": "note", "type": "text" },
+      { "name": "frequency", "type": "select", "options": { "values": ["daily","weekly","monthly","yearly"] }, "required": true },
+      { "name": "startDate", "type": "text" },
+      { "name": "endDate", "type": "text" }
+    ]
+  },
+  {
+    "name": "debts",
+    "type": "base",
+    "schema": [
+      { "name": "person", "type": "text", "required": true },
+      { "name": "amount", "type": "number", "required": true },
+      { "name": "currency", "type": "text", "required": true },
+      { "name": "description", "type": "text" },
+      { "name": "date", "type": "text", "required": true },
+      { "name": "settled", "type": "bool" },
+      { "name": "settledAt", "type": "text" }
+    ]
+  }
+]
