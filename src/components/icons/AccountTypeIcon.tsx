@@ -1,14 +1,14 @@
 import type { AccountType } from '../../models/types'
 
 const COLORS: Record<AccountType, string> = {
-  credit: '#FF6B6B',
-  checking: '#007AFF',
+  credit: '#F472B6',
+  checking: '#024059',
   savings: '#34C759',
-  debit: '#5856D6',
+  debit: '#C084FC',
   insurance: '#FF9500',
-  investment: '#AF52DE',
+  investment: '#024059',
   cash: '#30D158',
-  prepaid: '#FF2D55',
+  prepaid: '#F472B6',
 }
 
 interface Props {

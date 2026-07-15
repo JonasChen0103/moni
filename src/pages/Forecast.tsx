@@ -74,15 +74,15 @@ export default function Forecast() {
                 <AreaChart data={forecast} margin={{ top: 5, right: 5, left: -20, bottom: 0 }}>
                   <defs>
                     <linearGradient id="netWorthGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#024059" stopOpacity={0.3} />
-                      <stop offset="100%" stopColor="#024059" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#F472B6" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="#F472B6" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid strokeDasharray="3 3" stroke="rgba(60,60,67,0.1)" />
                   <XAxis dataKey="label" tick={{ fontSize: 10, fill: 'rgba(60,60,67,0.6)' }} />
                   <YAxis tick={{ fontSize: 10, fill: 'rgba(60,60,67,0.6)' }} tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}k`} />
                   <Tooltip content={<ForecastTooltip format={format} />} />
-                  <Area type="monotone" dataKey="projectedNetWorth" stroke="#024059" fill="url(#netWorthGrad)" strokeWidth={2} />
+                  <Area type="monotone" dataKey="projectedNetWorth" stroke="#F472B6" fill="url(#netWorthGrad)" strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
             </div>

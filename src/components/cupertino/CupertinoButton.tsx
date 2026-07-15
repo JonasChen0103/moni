@@ -22,7 +22,7 @@ export function CupertinoButton({
   const padding = 'px-5 py-3'
 
   const styles: Record<string, string> = {
-    filled: 'bg-gradient-to-r from-ios-blue to-ios-blue/90 text-white shadow-[0_2px_8px_rgba(2,64,89,0.3)]',
+    filled: 'bg-gradient-to-r from-ios-pink to-ios-purple text-white shadow-[0_2px_10px_rgba(244,114,182,0.3)]',
     tinted: 'bg-ios-blue/12 text-ios-blue',
     plain: 'bg-transparent text-ios-blue',
   }

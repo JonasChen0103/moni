@@ -1,7 +1,7 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts'
 import type { Transaction } from '../../models/types'
 
-const COLORS = ['#024059', '#F472B6', '#C084FC', '#34C759', '#FF9500', '#5AC8FA', '#FF3B30', '#FFCC00']
+const COLORS = ['#F472B6', '#C084FC', '#024059', '#34C759', '#FF9500', '#5AC8FA', '#FF3B30', '#FFCC00']
 
 interface Props {
   transactions: Transaction[]

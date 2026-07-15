@@ -117,11 +117,11 @@ export function TransactionHeatmap({ transactions }: Props) {
 function getColor(count: number, max: number): string {
   if (count === 0) {
     const isDark = document.documentElement.classList.contains('dark')
-    return isDark ? 'rgba(255,255,255,0.06)' : 'rgba(2,64,89,0.06)'
+    return isDark ? 'rgba(255,255,255,0.06)' : 'rgba(244,114,182,0.06)'
   }
   const intensity = Math.min(count / max, 1)
-  if (intensity <= 0.25) return 'rgba(2,64,89,0.2)'
-  if (intensity <= 0.5) return 'rgba(2,64,89,0.4)'
-  if (intensity <= 0.75) return 'rgba(2,64,89,0.65)'
-  return '#024059'
+  if (intensity <= 0.25) return 'rgba(244,114,182,0.2)'
+  if (intensity <= 0.5) return 'rgba(244,114,182,0.4)'
+  if (intensity <= 0.75) return 'rgba(244,114,182,0.65)'
+  return '#F472B6'
 }

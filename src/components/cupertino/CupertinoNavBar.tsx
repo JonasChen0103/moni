@@ -21,7 +21,7 @@ export function CupertinoNavBar({ title, subtitle, largeTitle = true, leading, t
         <div className="px-5 pt-1 pb-3 bg-ios-bg dark:bg-ios-bg">
           <div className="flex items-center gap-3">
             {icon && (
-              <div className="w-10 h-10 rounded-[12px] bg-gradient-to-br from-ios-blue/12 to-ios-purple/12 dark:from-ios-blue/20 dark:to-ios-purple/20 flex items-center justify-center text-ios-blue flex-shrink-0">
+              <div className="w-10 h-10 rounded-[12px] bg-gradient-to-br from-ios-pink/15 to-ios-purple/15 dark:from-ios-pink/20 dark:to-ios-purple/20 flex items-center justify-center text-ios-teal dark:text-ios-pink flex-shrink-0">
                 {icon}
               </div>
             )}
@@ -40,7 +40,7 @@ export function NavBarAddButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={onClick}
-      className="w-[30px] h-[30px] rounded-full bg-gradient-to-br from-ios-blue to-ios-purple flex items-center justify-center border-0 cursor-pointer active:opacity-70 transition-opacity shadow-[0_2px_8px_rgba(2,64,89,0.25)]"
+      className="w-[30px] h-[30px] rounded-full bg-gradient-to-br from-ios-pink to-ios-purple flex items-center justify-center border-0 cursor-pointer active:opacity-70 transition-opacity shadow-[0_2px_8px_rgba(244,114,182,0.3)]"
     >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M8 2v12M2 8h12" stroke="white" strokeWidth="2.2" strokeLinecap="round" />
